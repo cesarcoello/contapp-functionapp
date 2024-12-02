@@ -5,10 +5,8 @@ import logging
 
 app = func.FunctionApp()
 
-@app.queue_trigger(
-        arg_name="azqueue", 
-        queue_name="activate",
-        connection="SA") 
+@app.queue_trigger(arg_name="azqueue", queue_name="activate",
+                               connection="SA") 
 def queue_trigger(azqueue: func.QueueMessage):
     logging.info('Python Queue trigger processed a message: %s',
                 azqueue.get_body().decode('utf-8'))
